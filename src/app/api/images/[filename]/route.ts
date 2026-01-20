@@ -1,26 +1,27 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import dbConnect from '@/lib/db';
 import mongoose from 'mongoose';
 
 export async function GET(
-    request: Request,
-    { params }: { params: { filename: string } }
+    request: NextRequest,
+    { params }: { params: Promise<{ filename: string }> }
 ) {
     await dbConnect();
+    const { filename } = await params;
 
     try {
         const db = mongoose.connection.db;
-        const bucket = new mongoose.mongo.GridFSBucket(db, {
+        const bucket = new mongoose.mongo.GridFSBucket(db!, {
             bucketName: 'images',
         });
 
-        const files = await bucket.find({ filename: params.filename }).toArray();
+        const files = await bucket.find({ filename }).toArray();
         if (!files || files.length === 0) {
             return NextResponse.json({ error: 'File not found' }, { status: 404 });
         }
 
         const file = files[0];
-        const stream = bucket.openDownloadStreamByName(params.filename);
+        const stream = bucket.openDownloadStreamByName(filename);
 
         // Convert Node ReadableStream to Web ReadableStream
         const webStream = new ReadableStream({
@@ -33,7 +34,7 @@ export async function GET(
 
         return new NextResponse(webStream, {
             headers: {
-                'Content-Type': file.contentType || 'image/jpeg',
+                'Content-Type': (file.metadata as any)?.contentType || 'image/jpeg',
                 'Cache-Control': 'public, max-age=31536000, immutable',
             },
         });

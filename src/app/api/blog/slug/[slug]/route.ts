@@ -1,11 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import dbConnect from '@/lib/db';
 import { BlogPost } from '@/models/BlogPost';
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
     await dbConnect();
+    const { slug } = await params;
     try {
-        const post = await BlogPost.findOne({ slug: params.slug, status: 'published' });
+        const post = await BlogPost.findOne({ slug, status: 'published' });
         if (!post) return NextResponse.json({ error: 'Post not found' }, { status: 404 });
 
         // Increment views

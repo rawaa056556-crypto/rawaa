@@ -17,19 +17,19 @@ export async function POST(request: Request) {
         const filename = `${Date.now()}-${file.name.replace(/\s/g, '_')}`;
 
         const db = mongoose.connection.db;
-        const bucket = new mongoose.mongo.GridFSBucket(db, {
+        const bucket = new mongoose.mongo.GridFSBucket(db!, {
             bucketName: 'images',
         });
 
         const uploadStream = bucket.openUploadStream(filename, {
-            contentType: file.type,
+            metadata: { contentType: file.type },
         });
 
-        await new Promise((resolve, reject) => {
-            uploadStream.end(buffer, (error: any) => {
-                if (error) reject(error);
-                resolve(true);
-            });
+        await new Promise<void>((resolve, reject) => {
+            uploadStream.on('error', reject);
+            uploadStream.on('finish', resolve);
+            uploadStream.write(buffer);
+            uploadStream.end();
         });
 
         // Return the URL that will serve this image

@@ -1,16 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import dbConnect from '@/lib/db';
 import { CollectionItem } from '@/models/CollectionItem';
 
 // PUT: Update an item
 export async function PUT(
-    request: Request,
-    { params }: { params: { id: string } }
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> }
 ) {
     await dbConnect();
+    const { id } = await params;
     try {
         const body = await request.json();
-        const updatedItem = await CollectionItem.findByIdAndUpdate(params.id, body, {
+        const updatedItem = await CollectionItem.findByIdAndUpdate(id, body, {
             new: true,
             runValidators: true,
         });
@@ -25,12 +26,13 @@ export async function PUT(
 
 // DELETE: Remove an item
 export async function DELETE(
-    request: Request,
-    { params }: { params: { id: string } }
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> }
 ) {
     await dbConnect();
+    const { id } = await params;
     try {
-        const deletedItem = await CollectionItem.findByIdAndDelete(params.id);
+        const deletedItem = await CollectionItem.findByIdAndDelete(id);
         if (!deletedItem) {
             return NextResponse.json({ error: 'Item not found' }, { status: 404 });
         }
