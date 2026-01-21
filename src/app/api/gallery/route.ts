@@ -57,7 +57,27 @@ export async function GET() {
         }
 
         const galleryItems = await GalleryItem.find({}).sort({ order: 1 });
-        return NextResponse.json(galleryItems);
+
+        // Cleanup duplicates based on image URL
+        const uniqueItems = [];
+        const seenImages = new Set();
+        const duplicatesToDelete = [];
+
+        for (const item of galleryItems) {
+            if (seenImages.has(item.image)) {
+                duplicatesToDelete.push(item._id);
+            } else {
+                seenImages.add(item.image);
+                uniqueItems.push(item);
+            }
+        }
+
+        if (duplicatesToDelete.length > 0) {
+            await GalleryItem.deleteMany({ _id: { $in: duplicatesToDelete } });
+            console.log(`Cleaned up ${duplicatesToDelete.length} duplicate gallery items.`);
+        }
+
+        return NextResponse.json(uniqueItems);
     } catch (error) {
         console.error('Error fetching gallery items:', error);
         return NextResponse.json({ error: 'Failed to fetch gallery items' }, { status: 500 });
