@@ -30,24 +30,23 @@ export function Navbar() {
             className={`fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-12 flex justify-between items-center
             ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"}`}
         >
-            <div className="flex items-center gap-4">
-                {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden text-[#5A4A42] hover:text-gold-primary transition-colors"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                    {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+            {/* Logo - Left Side */}
+            <Link href="/" className="flex items-center relative w-16 h-16 md:w-20 md:h-20 transition-all duration-300">
+                <Image
+                    src="/logo.webp"
+                    alt="Rawaa Logo"
+                    fill
+                    className="object-contain"
+                />
+            </Link>
 
-                <Link href="/" className="flex items-center relative w-16 h-16 md:w-20 md:h-20 transition-all duration-300">
-                    <Image
-                        src="/logo.webp"
-                        alt="Rawaa Logo"
-                        fill
-                        className="object-contain"
-                    />
-                </Link>
-            </div>
+            {/* Mobile Menu Button - Right Side */}
+            <button
+                className="md:hidden text-[#5A4A42] hover:text-gold-primary transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+                {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8 text-base font-bold text-[#5A4A42]">
