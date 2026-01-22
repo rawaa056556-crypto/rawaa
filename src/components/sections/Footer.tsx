@@ -62,7 +62,7 @@ export function Footer() {
                     </Link>
                     <div className="text-[#8B7355] text-sm font-arabic">
                         <p>رواء. جميع الحقوق محفوظة.</p>
-                        <a href="https://api.whatsapp.com/send/?phone=966541430116&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="text-xs mt-1 text-[#D4AF37] font-bold hover:underline">RWAD عن تصميم</a>
+                        <a href="https://api.whatsapp.com/send/?phone=966565560831&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="text-xs mt-1 text-[#D4AF37] font-bold hover:underline">RWAD عن تصميم</a>
                     </div>
                 </div>
             </div>
