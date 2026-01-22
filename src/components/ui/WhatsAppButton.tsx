@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export function WhatsAppButton() {
     return (
         <motion.a
-            href="https://api.whatsapp.com/send/?phone=966541430116&text&type=phone_number&app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=966565560831&text&type=phone_number&app_absent=0"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ scale: 0, opacity: 0 }}
