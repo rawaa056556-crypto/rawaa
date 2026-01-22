@@ -136,12 +136,12 @@ export default function NewCollectionItem() {
                                 onChange={e => setFormData({ ...formData, category: e.target.value })}
                                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#C5A038] outline-none bg-white"
                             >
-                                <option value="jalabiya">جلابيات</option>
-                                <option value="ihram">إحرامات</option>
+                                <option value="ihram">إحرامات عمرة وحج</option>
+                                <option value="prayer_ihram">إحرامات صلاة</option>
+                                <option value="jalabiya">خياطة جلابيات</option>
+                                <option value="uniform">زي موحد(مراييل)</option>
                                 <option value="alteration">تعديلات</option>
-                                <option value="women">خياطة نسائية</option>
-                                <option value="prayer_ihram">إحرامات الصلاة</option>
-                                <option value="uniform">زي موحد (مراييل مدرسية)</option>
+                                <option value="women">خياطة نسائية شاملة</option>
                             </select>
                         </div>
                     </div>

@@ -12,12 +12,12 @@ import { getOrderWhatsAppUrl, WHATSAPP_NUMBER } from "@/lib/constants";
 
 const categories = [
     { id: "all", label: "الكل" },
-    { id: "jalabiya", label: "جلابيات" },
-    { id: "ihram", label: "إحرامات" },
-    { id: "women", label: "خياطة نسائية" },
+    { id: "ihram", label: "إحرامات عمرة وحج" },
+    { id: "prayer_ihram", label: "إحرامات صلاة" },
+    { id: "jalabiya", label: "خياطة جلابيات" },
+    { id: "uniform", label: "زي موحد(مراييل)" },
     { id: "alteration", label: "تعديلات" },
-    { id: "prayer_ihram", label: "إحرامات الصلاة" },
-    { id: "uniform", label: "زي موحد (مراييل مدرسية)" },
+    { id: "women", label: "خياطة نسائية شاملة" },
 ];
 
 export default function CollectionPage() {

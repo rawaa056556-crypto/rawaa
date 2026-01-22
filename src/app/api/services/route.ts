@@ -12,24 +12,34 @@ export async function GET() {
             // Seed initial data if empty
             const initialServices = [
                 {
-                    title: "أزياء الحج والعمرة",
+                    title: "إحرامات عمرة وحج",
                     image: "/siteimages/5151.webp",
                     order: 1
                 },
                 {
-                    title: "تعديل الملابس",
-                    image: "/siteimages/download.webp",
+                    title: "إحرامات صلاة",
+                    image: "/siteimages/download (46).webp", // Using existing placeholder
                     order: 2
                 },
                 {
-                    title: "خياطة الجلابيات",
+                    title: "خياطة جلابيات",
                     image: "/siteimages/download (46).webp",
                     order: 3
                 },
                 {
+                    title: "زي موحد(مراييل)",
+                    image: "/siteimages/download.webp",
+                    order: 4
+                },
+                {
+                    title: "تعديلات",
+                    image: "/siteimages/download.webp",
+                    order: 5
+                },
+                {
                     title: "خياطة نسائية شاملة",
                     image: "/siteimages/download (45).webp",
-                    order: 4
+                    order: 6
                 }
             ];
 
