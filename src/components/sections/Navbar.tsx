@@ -28,19 +28,9 @@ export function Navbar() {
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
             className={`fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-12 flex justify-between items-center
-            ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"}`}
+            ${isScrolled ? "bg-[#F2EFE9]/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"}`}
         >
-            {/* Logo - Left Side */}
-            <Link href="/" className="flex items-center relative w-16 h-16 md:w-20 md:h-20 transition-all duration-300">
-                <Image
-                    src="/logo.webp"
-                    alt="Rawaa Logo"
-                    fill
-                    className="object-contain"
-                />
-            </Link>
-
-            {/* Mobile Menu Button - Right Side */}
+            {/* Mobile Menu Button - Left Side on Mobile */}
             <button
                 className="md:hidden text-[#5A4A42] hover:text-gold-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -56,6 +46,16 @@ export function Navbar() {
                 <NavLink href="/blog" active={pathname.startsWith("/blog")}>المدونة</NavLink>
                 <NavLink href="/contact" active={pathname === "/contact"}>تواصل معنا</NavLink>
             </div>
+
+            {/* Logo - Center/Right layout adjustment - Logo is now visually on the other side if flex order is kept or we just swapped placement in code */}
+            <Link href="/" className="flex items-center relative w-16 h-16 md:w-20 md:h-20 transition-all duration-300">
+                <Image
+                    src="/logo.webp"
+                    alt="Rawaa Logo"
+                    fill
+                    className="object-contain"
+                />
+            </Link>
 
             {/* Mobile Navigation Menu */}
             <AnimatePresence>

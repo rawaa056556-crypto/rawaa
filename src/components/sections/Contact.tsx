@@ -52,7 +52,7 @@ export function Contact() {
         {
             icon: Clock,
             title: "ساعات العمل",
-            value: "من السبت إلى الخميس: 10 ص - 10 م",
+            value: "يوميا: 10 ص - 10 م",
             link: null,
             delay: 0.3
         }

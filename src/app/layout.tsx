@@ -1,9 +1,13 @@
+
 import type { Metadata, Viewport } from "next";
 import { Cairo, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import dbConnect from "@/lib/db";
+import { SiteContent } from "@/models/SiteContent";
+import { siteConfig } from "@/lib/seo-utils";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -17,91 +21,74 @@ const greatVibes = Great_Vibes({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://5yata.com"), // Update with actual domain
+export async function generateMetadata(): Promise<Metadata> {
+  await dbConnect();
 
-  title: {
-    default: "خياطة رواء | للأزياء النسائية الراقية",
-    template: "%s | خياطة رواء للأزياء النسائية",
-  },
+  let titleSuffix = " | خياطة رواء";
+  let description = "مشغل خياطة رواء المتخصص في تصميم وتفصيل أرقى الأزياء النسائية، فساتين السهرة، الجلابيات، وملابس الإحرام. دقة في التفصيل وجودة في الأقمشة لتناسب ذوقك الرفيع.";
+  let keywordsStr = "خياطة, فساتين, جلابيات, الدمام, مشغل نسائي, تفصيل";
 
-  description:
-    "مشغل خياطة رواء المتخصص في تصميم وتفصيل أرقى الأزياء النسائية، فساتين السهرة، الجلابيات، وملابس الإحرام. دقة في التفصيل وجودة في الأقمشة لتناسب ذوقك الرفيع.",
+  try {
+    const suffixDoc = await SiteContent.findOne({ key: 'seo_title_suffix' });
+    if (suffixDoc && suffixDoc.value) titleSuffix = suffixDoc.value;
 
-  keywords: [
-    /* ========= BRAND ========= */
-    "خياطة رواء",
-    "مشغل رواء",
-    "Rawaa Sewing",
-    "Rawaa Fashion",
+    const descDoc = await SiteContent.findOne({ key: 'seo_default_description' });
+    if (descDoc && descDoc.value) description = descDoc.value;
 
-    /* ========= SERVICES ========= */
-    "خياطة نسائية",
-    "تفصيل فساتين",
-    "خياطة جلابيات",
-    "تصميم أزياء",
-    "موديلات فساتين",
-    "ملابس إحرام نسائية",
-    "تفصيل عبايات",
-    "تعديل ملابس",
-    "خياطة راقية",
-    "مشغل خياطة",
-    "تفصيل حسب الطلب",
+    const keysDoc = await SiteContent.findOne({ key: 'seo_keywords' });
+    if (keysDoc && keysDoc.value) keywordsStr = keysDoc.value;
+  } catch (e) {
+    console.error("Failed to fetch SEO settings", e);
+  }
 
-    /* ========= LOCATIONS (General) ========= */
-    "خياطة في السعودية",
-    "مشغل خياطة بجدة",
-    "أفضل مشغل خياطة",
+  const keywords = keywordsStr.split(',').map(k => k.trim());
 
-    /* ========= ENGLISH ========= */
-    "Women's Tailoring",
-    "Fashion Design",
-    "Dress Making",
-    "Abaya Tailoring",
-    "Sewing Services Saudi Arabia",
-    "High-end Fashion",
-  ],
-
-  alternates: {
-    canonical: "./",
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+  return {
+    metadataBase: new URL(siteConfig.siteUrl),
+    title: {
+      default: `خياطة رواء${titleSuffix}`,
+      template: `%s${titleSuffix}`,
+    },
+    description: description,
+    keywords: keywords,
+    alternates: {
+      canonical: "./",
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
-  },
-
-  openGraph: {
-    title: "خياطة رواء | للأزياء النسائية الراقية",
-    description: "خدمات خياطة وتفصيل أزياء نسائية، جلابيات، وملابس إحرام بأعلى جودة ودقة.",
-    url: "https://5yata.com/",
-    siteName: "خياطة رواء",
-    locale: "ar_SA",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.jpg", // Ensure this image exists in public folder
-        width: 1200,
-        height: 630,
-        alt: "خياطة رواء",
-      }
-    ]
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "خياطة رواء | للأزياء النسائية الراقية",
-    description: "خدمات خياطة وتفصيل أزياء نسائية، جلابيات، وملابس إحرام بأعلى جودة.",
-    images: ["/og-image.jpg"],
-  },
-};
+    openGraph: {
+      title: `خياطة رواء${titleSuffix}`,
+      description: description,
+      url: siteConfig.siteUrl,
+      siteName: "خياطة رواء",
+      locale: "ar_SA",
+      type: "website",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "خياطة رواء",
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `خياطة رواء${titleSuffix}`,
+      description: description,
+      images: ["/og-image.jpg"],
+    },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#FFFBF2",
@@ -119,7 +106,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
-        {/* Google Tag Manager (Placeholder ID - Update with actual ID) */}
+        {/* Google Tag Manager (Placeholder) */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -131,7 +118,6 @@ export default function RootLayout({
           `,
           }}
         />
-        {/* Note: I used a placeholder GTM ID (GTM-MJ8X123). Please replace with your actual container ID. */}
 
         {/* Local Business Schema */}
         <script
@@ -142,10 +128,10 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               "additionalType": "fashion",
               name: "خياطة رواء",
-              image: "https://5yata.com/logo.webp",
-              "@id": "https://5yata.com",
-              url: "https://5yata.com",
-              telephone: "+966500000000", // Update with actual number
+              image: `${siteConfig.siteUrl}/logo.webp`,
+              "@id": siteConfig.siteUrl,
+              url: siteConfig.siteUrl,
+              telephone: "+966500000000",
               priceRange: "$$",
               address: {
                 "@type": "PostalAddress",

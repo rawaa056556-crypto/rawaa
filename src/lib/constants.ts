@@ -10,7 +10,7 @@ export const WHATSAPP_NUMBER = "966565560831";
 export const DISPLAY_PHONE = "056 556 0831";
 
 // Location
-export const LOCATION = "سيهات - القطيف - الدمام - الأحساء";
+export const LOCATION = "سيهات الدمام";
 
 // Site Name
 export const SITE_NAME = "بطلة - أتيلييه ومحل خياطة";

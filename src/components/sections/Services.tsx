@@ -2,12 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Scissors, Ruler, Shirt, Sparkles, ArrowRight, CheckCircle2, Clock, ThumbsUp, MessageCircle } from "lucide-react";
+import { Scissors, Ruler, Shirt, Sparkles, ArrowRight, CheckCircle2, Clock, ThumbsUp, MessageCircle, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { getInquiryWhatsAppUrl } from "@/lib/constants";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 export function Services() {
+    const { content } = useSiteContent();
+
     return (
         <section className="py-24 bg-[#FFFBF2] relative overflow-hidden" dir="rtl" id="services">
             {/* Background Elements */}
@@ -65,6 +68,7 @@ export function Services() {
                     description="متخصصون في تنفيذ كافة الأزياء النسائية بخبرة تمتد لأكثر من 10 سنوات في كبرى المصانع."
                     icon={<Scissors className="w-8 h-8" />}
                 />
+
             </motion.div>
 
             {/* Value Proposition Section */}
@@ -75,6 +79,7 @@ export function Services() {
                     <div className="flex flex-col lg:flex-row items-center gap-12 relative z-10">
                         <div className="w-full lg:w-1/2 space-y-8">
                             <h3 className="text-3xl font-bold text-[#5A4A42]">لماذا تختارين خياطة رواء؟</h3>
+
                             <p className="text-gray-600 leading-relaxed text-lg">
                                 لأننا نؤمن أن الخياطة هي فن وعناية بالتفاصيل قبل أن تكون مهنة. خبرتنا التي تتجاوز الـ 10 سنوات تضمن لكِ الحصول على قطعة متقنة الصنع تدوم طويلاً.
                             </p>
@@ -89,10 +94,10 @@ export function Services() {
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white px-8 py-4 rounded-xl transition-colors duration-300 shadow-lg group mt-4 cursor-pointer"
+                                    className="inline-flex items-center gap-2 bg-[#C5A038] hover:bg-[#a8862d] text-white px-8 py-4 rounded-xl transition-colors duration-300 shadow-lg group mt-4 cursor-pointer border-2 border-[#C5A038] ring-4 ring-[#C5A038]/20"
                                 >
                                     <MessageCircle size={20} fill="white" className="stroke-none" />
-                                    <span>احجزي موعدك عبر واتساب</span>
+                                    <span>اطلبي الآن عبر الواتساب</span>
                                     <ArrowRight className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                                 </motion.div>
                             </a>

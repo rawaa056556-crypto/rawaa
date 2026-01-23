@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, Image as ImageIcon, Layers, LayoutGrid, Settings, Scissors } from "lucide-react";
+import { BookOpen, Image as ImageIcon, Layers, LayoutGrid, Settings, Scissors, Search, Star } from "lucide-react";
 
 export default function AdminDashboard() {
     const cards = [
@@ -39,6 +39,20 @@ export default function AdminDashboard() {
             icon: <ImageIcon size={32} />,
             href: "/admin/content",
             color: "bg-amber-50 text-amber-600 border-amber-100"
+        },
+        {
+            title: "إعدادات SEO",
+            description: "ضبط عناوين ووصف الموقع لمحركات البحث",
+            icon: <Search size={32} />,
+            href: "/admin/seo",
+            color: "bg-teal-50 text-teal-600 border-teal-100"
+        },
+        {
+            title: "التقييمات",
+            description: "إدارة تقييمات وآراء العملاء",
+            icon: <Star size={32} />,
+            href: "/admin/reviews",
+            color: "bg-orange-50 text-orange-600 border-orange-100"
         },
     ];
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 interface GalleryData {
     _id: string;
@@ -11,6 +12,7 @@ interface GalleryData {
 }
 
 export function Gallery() {
+    const { content } = useSiteContent();
     const [galleryItems, setGalleryItems] = useState<GalleryData[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -74,8 +76,8 @@ export function Gallery() {
                     </svg>
                 </div>
 
-                <h2 className="text-7xl md:text-9xl font-script text-[#1a1a1a] relative inline-block">
-                    Gallery
+                <h2 className="text-5xl md:text-7xl font-arabic font-bold text-[#1a1a1a] relative inline-block">
+                    {content.gallery_title || "تصفحي أحدث أعمال رواء"}
                     {/* Pink Sparkle on Title */}
                     <motion.div
                         initial={{ scale: 0 }}
@@ -88,8 +90,8 @@ export function Gallery() {
                         </svg>
                     </motion.div>
                 </h2>
-                {/* Arabic Subtitle */}
-                <p className="mt-4 text-xl text-[#8B7355] font-arabic tracking-wide">معرض الصور</p>
+                {/* English Subtitle */}
+                <p className="mt-4 text-xl text-[#8B7355] font-script tracking-wide text-4xl">Gallery</p>
             </motion.div>
 
             {/* Collage Container */}

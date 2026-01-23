@@ -38,10 +38,15 @@ export default function BlogAdminPage() {
     const handleDelete = async (id: string) => {
         if (!confirm("هل أنت متأكد من حذف هذا المقال؟")) return;
         try {
-            await fetch(`/api/blog/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/blog/${id}`, { method: "DELETE" });
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || "Failed to delete");
+            }
             setPosts(posts.filter((p) => p._id !== id));
-        } catch (error) {
-            alert("Error deleting post");
+        } catch (error: any) {
+            console.error("Delete error:", error);
+            alert(`حدث خطأ أثناء الحذف: ${error.message}`);
         }
     };
 

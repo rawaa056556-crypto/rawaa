@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, MapPin, Clock } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -61,6 +61,17 @@ export function ContactSection() {
                         تواصل معنا
                     </motion.span>
                 </h2>
+
+                <div className="flex flex-col gap-4 mb-8 text-center" dir="rtl">
+                    <div className="flex items-center justify-center gap-2 text-[#8B7355]">
+                        <MapPin size={20} className="text-[#C5A038]" />
+                        <span className="font-arabic text-lg">سيهات الدمام</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 text-[#8B7355]">
+                        <Clock size={20} className="text-[#C5A038]" />
+                        <span className="font-arabic text-lg">ساعات العمل يوميا</span>
+                    </div>
+                </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8" dir="rtl">
 

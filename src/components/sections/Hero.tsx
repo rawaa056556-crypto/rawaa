@@ -84,6 +84,15 @@ export function Hero() {
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                    className="mt-2 text-lg text-gold-primary font-medium"
+                >
+                    {content.hero_subtitle || "أناقة هادئة بتفاصيل متقنة"}
+                </motion.p>
+
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     transition={{ delay: 0.7, duration: 0.8 }}
                     className="mt-6 text-xl text-[#5A4A42] font-medium max-w-md leading-relaxed"
                 >

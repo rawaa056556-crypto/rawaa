@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import { Scissors, Ruler, CheckCircle, Award, Shirt, Star, MessageCircle } from "lucide-react";
+import { Scissors, Ruler, CheckCircle, Award, Shirt, Star, MessageCircle, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { useSiteContent } from "@/hooks/useSiteContent";
@@ -193,6 +193,17 @@ export function About() {
                         desc="تنفيذ كافة أنواع الموديلات والقصات النسائية بلمسة احترافية."
                         delay={0.4}
                     />
+                    {/* Centered 5th Card - Full width container or just centered by grid logic if we adjust classes or just let it wrap */}
+                    <div className="md:col-span-2 lg:col-span-4 flex justify-center">
+                        <div className="w-full md:w-1/2 lg:w-1/4">
+                            <ServiceCard
+                                icon={<Users />}
+                                title="زي موحد"
+                                desc="تصميم وتنفيذ زي موحد للشركات والمدارس بجودة عالية وخامات عملية تتحمل الاستخدام اليومي."
+                                delay={0.5}
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -206,7 +217,8 @@ export function About() {
                 {/* Decorative Pattern */}
                 <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#C5A038_1px,transparent_1px)] [background-size:20px_20px]" />
 
-                <h3 className="text-3xl md:text-4xl font-bold text-[#5A4A42] mb-16 relative z-10">لماذا تختارين رواء؟</h3>
+                <h3 className="text-3xl md:text-4xl font-bold text-[#5A4A42] mb-4 relative z-10">لماذا تختارين رواء؟</h3>
+                <p className="text-sm text-[#8B7355] mb-12 relative z-10">نخيط لكي قطعة لتعيش معكي سنوات طويلة</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
                     <Feature
                         title="خبرة مصانع"
