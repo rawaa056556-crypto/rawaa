@@ -74,19 +74,14 @@ export function Testimonials() {
                 <div className="absolute top-0 right-0 h-full w-24 md:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
                 {reviews.length > 0 && (
-                    <motion.div
-                        className="flex gap-8 w-max"
-                        animate={{ x: [0, -2000] }} // Adjust value based on content width approximation, or use % if container is fixed
-                        // A more robust infinite scroll usually requires measuring width, but for simple effect we can use % if we duplicate enough
-                        style={{ x: 0 }} // Reset for JS animation
-                    >
-                        {/* We use a CSS animation container instead for true infinite scroll smoothness without complex JS measurements */}
+                    <div className="flex w-max hover:pause-animation">
+                        {/* CSS Animation Container */}
                         <div className="flex gap-8 animate-scroll-rtl">
                             {duplicatedReviews.map((review, index) => (
                                 <TestimonialCard key={`${review._id}-${index}`} testimonial={review} />
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
                 )}
 
                 {reviews.length === 0 && (
@@ -96,26 +91,27 @@ export function Testimonials() {
                 )}
             </div>
 
-            {/* CSS for infinite scroll - added inline style for simplicity in this component or add to global css */}
+            {/* CSS for infinite scroll */}
             <style jsx global>{`
-                @keyframes scroll-rtl {
+                @keyframes scroll-ltr {
                     0% { transform: translateX(0); }
-                    100% { transform: translateX(50%); } 
+                    100% { transform: translateX(calc(-100% / 3)); }
                 }
                 .animate-scroll-rtl {
                     display: flex;
                     gap: 2rem;
-                    animation: scroll-rtl 40s linear infinite; /* Right to Left means moving positive on X if RTL, or standard negative if LTR. Since we want Left to Right motion (slider moving ->), we need translateX to go positive? Wait USER said "left to right motion". Standard tickers move Right to Left (content flowing left). Left to right means content flows ->. */
-                    /* Let's Try: Content moves from Left side of screen towards Right side. */
-                    /* If dir="rtl", normal flow is Right to Left? */
-                    /* Actually, usually tickers move so you can read new items coming from one side. */
-                    /* User asked: "motion effect from left to right continus motion" */
-                    /* So items should travel -> -> -> */
-                    animation: scroll-ltr 60s linear infinite; 
+                    /* Move left to right (or right to left depending on visual). 
+                       Standard: content slides LEFT. transform: translateX(-50%).
+                       Since we have 3 copies, and want to slide continuously, we move by 1/3.
+                       Wait, duplicatedReviews = [...reviews, ...reviews, ...reviews]. Total 3 sets.
+                       To loop perfectly, we move exactly the width of ONE set (1/3 of total width).
+                       Target: translateX(-33.333%).
+                    */
+                    animation: scroll-ltr 40s linear infinite;
                 }
-                 @keyframes scroll-ltr {
-                    0% { transform: translateX(-50%); } /* Start bumped left */
-                    100% { transform: translateX(0); } /* Move to 0 */
+                /* Pause on hover */
+                .hover\\:pause-animation:hover .animate-scroll-rtl {
+                    animation-play-state: paused;
                 }
             `}</style>
 

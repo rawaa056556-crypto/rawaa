@@ -95,7 +95,9 @@ const XIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
 );
 const SnapchatIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-yellow-500"><path d="M12 2c-3 0-5.5 2-6.5 4.5l-.5.5c-1 1-1 1.5-1 2.5 0 2 2.5 2.5 2.5 4 0 1-1 1.5-1.5 2 0 .5.5 1 1 1h12c.5 0 1-.5 1-1-.5-.5-1.5-1-1.5-2 0-1.5 2.5-2 2.5-4 0-1 0-1.5-1-2.5l-.5-.5C17.5 4 15 2 12 2z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-yellow-500">
+        <path d="M12 2.5c-4.1 0-7.5 3.1-7.5 7 0 1.6.6 3.1 1.6 4.3.4.5.3 1.3-.3 1.8-.7.6-1.4 1.2-1.4 1.2s1.8.4 2.4.5c.3.1.6.4.6.8-.1.7-.8 1.4-1.8 1.6 0 0 .5.7 1.8.7 1.3 0 2.2-.6 2.2-.6s.4 1.1 2.3 1.1c1.9 0 2.4-1.1 2.4-1.1s.9.6 2.3.6c1.3 0 1.8-.7 1.8-.7 1-.3 1.7-1.6 1.7-1.6-.9-.1-1.7-.9-1.8-1.7 0-.3.3-.7.6-.8.6-.1 2.4-.5 2.4-.5s-.7-.6-1.4-1.2c-.6-.5-.7-1.3-.3-1.8 1-1.2 1.6-2.7 1.6-4.3 0-3.9-3.4-7-7.5-7z" />
+    </svg>
 );
 const WhatsappIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-green-500">
