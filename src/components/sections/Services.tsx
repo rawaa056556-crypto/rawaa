@@ -2,15 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Scissors, Ruler, Shirt, Sparkles, ArrowRight, CheckCircle2, Clock, ThumbsUp, MessageCircle, Users } from "lucide-react";
+import { Sparkles, Shirt, Ruler, Scissors, ArrowRight, CheckCircle2, Clock, ThumbsUp, MessageCircle, Users, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { getInquiryWhatsAppUrl } from "@/lib/constants";
-import { useSiteContent } from "@/hooks/useSiteContent";
+import { servicesData } from "@/data/services";
+import * as LucideIcons from "lucide-react";
 
 export function Services() {
-    const { content } = useSiteContent();
-
     return (
         <section className="py-24 bg-[#FFFBF2] relative overflow-hidden" dir="rtl" id="services">
             {/* Background Elements */}
@@ -48,26 +47,18 @@ export function Services() {
                 }}
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24 relative z-10"
             >
-                <ServiceCard
-                    title="أزياء الحج والعمرة"
-                    description="تصميم وتنفيذ ملابس إحرام وصلاة مريحة، تراعي الخصوصية وتوفر لكِ الراحة التامة لأداء المناسك."
-                    icon={<Sparkles className="w-8 h-8" />}
-                />
-                <ServiceCard
-                    title="خياطة الجلابيات"
-                    description="تشكيلة واسعة من الجلابيات العصرية والتقليدية، نصممها بذوق رفيع يناسب جميع الأذواق والمناسبات."
-                    icon={<Shirt className="w-8 h-8" />}
-                />
-                <ServiceCard
-                    title="تعديل الملابس"
-                    description="خدمات احترافية لتعديل المقاسات، التقصير، والتضييق لتبدو ملابسك وكأنها صممت خصيصاً لكِ."
-                    icon={<Ruler className="w-8 h-8" />}
-                />
-                <ServiceCard
-                    title="خياطة نسائية شاملة"
-                    description="متخصصون في تنفيذ كافة الأزياء النسائية بخبرة تمتد لأكثر من 10 سنوات في كبرى المصانع."
-                    icon={<Scissors className="w-8 h-8" />}
-                />
+                {servicesData.slice(0, 4).map((service) => {
+                    const IconComponent = (LucideIcons as any)[service.iconName] || LucideIcons.Sparkles;
+                    return (
+                        <ServiceCard
+                            key={service.id}
+                            title={service.title}
+                            description={service.shortDescription}
+                            icon={<IconComponent className="w-8 h-8" />}
+                            slug={service.slug}
+                        />
+                    );
+                })}
 
             </motion.div>
 
@@ -126,7 +117,7 @@ export function Services() {
     );
 }
 
-function ServiceCard({ title, description, icon }: { title: string, description: string, icon: React.ReactNode }) {
+function ServiceCard({ title, description, icon, slug }: { title: string, description: string, icon: React.ReactNode, slug: string }) {
     return (
         <motion.div
             variants={{
@@ -143,7 +134,7 @@ function ServiceCard({ title, description, icon }: { title: string, description:
             <p className="text-gray-500 leading-relaxed text-sm flex-grow mb-6">
                 {description}
             </p>
-            <Link href="/contact" className="flex items-center text-[#C5A038] font-medium text-sm group-hover:gap-2 transition-all">
+            <Link href={`/services/${slug}`} className="flex items-center text-[#C5A038] font-medium text-sm group-hover:gap-2 transition-all">
                 <span>المزيد من التفاصيل</span>
                 <ArrowRight className="w-4 h-4 mr-1 opacity-0 group-hover:opacity-100 group-hover:mr-2 transition-all" />
             </Link>

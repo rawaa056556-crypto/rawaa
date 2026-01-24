@@ -100,7 +100,7 @@ export default function CollectionPage() {
             </section>
 
             {/* Filter Tabs */}
-            <section className="px-4 md:px-8 mb-16 sticky top-20 z-30">
+            <section className="px-4 md:px-8 mb-16 sticky top-24 z-30">
                 <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-4xl mx-auto bg-white/60 backdrop-blur-xl p-3 rounded-full shadow-sm border border-white/50">
                     {categories.map((cat) => (
                         <button
@@ -267,7 +267,7 @@ export default function CollectionPage() {
 
                                     <div className="space-y-4">
                                         <a
-                                            href={selectedItem ? getOrderWhatsAppUrl(selectedItem.title, categories.find(c => c.id === selectedItem.category)?.label) : '#'}
+                                            href={selectedItem ? getOrderWhatsAppUrl(selectedItem.title, categories.find(c => c.id === selectedItem.category)?.label, window.location.origin + selectedItem.image) : '#'}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="block w-full bg-[#25D366] hover:bg-[#1da851] text-white text-center py-5 rounded-2xl font-bold text-lg transition-all shadow-xl hover:shadow-[#25D366]/30 hover:-translate-y-1 relative overflow-hidden group"
@@ -297,18 +297,7 @@ export default function CollectionPage() {
                 )}
             </AnimatePresence>
 
-            {/* Sticky Floating Action Button (Mobile) */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="fixed bottom-6 left-6 z-40 md:hidden"
-            >
-                <Link href={`https://wa.me/${WHATSAPP_NUMBER}`} className="w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl flex items-center justify-center">
-                    <MessageCircle size={32} fill="white" className="stroke-none" />
-                </Link>
-            </motion.div>
+
         </main>
     );
 }

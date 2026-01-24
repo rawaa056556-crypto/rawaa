@@ -12,7 +12,7 @@ export function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16">
                     {/* Logo Section */}
                     <div className="flex-shrink-0">
-                        <div className="relative w-32 h-32 md:w-40 md:h-40">
+                        <div className="relative w-20 h-20 md:w-40 md:h-40">
                             <Image
                                 src="/logo.webp"
                                 alt="Rawaa Logo"
@@ -33,23 +33,14 @@ export function Footer() {
                             <SocialIcon href="#" icon={<FacebookIcon />} />
                         </div>
 
-                        <a href={getInquiryWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="bg-[#25D366] hover:bg-[#1da851] text-white text-lg md:text-xl font-bold py-3 px-12 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 block text-center">
+                        <a href={getInquiryWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="bg-[#25D366] hover:bg-[#1da851] text-white text-lg md:text-xl font-bold py-3 px-12 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 block text-center border-2 border-[#C5A038]">
                             تواصل عبر واتساب
                         </a>
+                        <p className="text-[#8B7355] font-bold">الموقع: السعودية فقط</p>
                     </div>
 
-                    {/* Map Section */}
-                    <div className="flex-shrink-0 w-full md:w-80 h-48 bg-gray-100 rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)] border-[3px] border-black relative transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                        <iframe
-                            src="https://maps.google.com/maps?q=26.4660679,50.0415029&z=17&output=embed"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            allowFullScreen
-                            loading="lazy"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                    {/* Map Section Removed as per request */}
+
                 </div>
 
                 {/* Divider */}
@@ -57,9 +48,14 @@ export function Footer() {
 
                 {/* Copyright Section */}
                 <div className="text-center space-y-2">
-                    <Link href="#" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
-                        الشروط والأحكام
-                    </Link>
+                    <div className="flex justify-center gap-4">
+                        <Link href="#" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
+                            الشروط والأحكام
+                        </Link>
+                        <Link href="#" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
+                            سياسة الاستبدال والاسترجاع
+                        </Link>
+                    </div>
                     <div className="text-[#8B7355] text-sm font-arabic">
                         <p>رواء. جميع الحقوق محفوظة.</p>
                         <a href="https://api.whatsapp.com/send/?phone=966565560831&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="text-xs mt-1 text-[#D4AF37] font-bold hover:underline">RWAD عن تصميم</a>

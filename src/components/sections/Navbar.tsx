@@ -41,6 +41,7 @@ export function Navbar() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8 text-base font-bold text-[#5A4A42]">
                 <NavLink href="/" active={pathname === "/"}>الرئيسية</NavLink>
+                <NavLink href="/services" active={pathname.startsWith("/services")}>خدماتنا</NavLink>
                 <NavLink href="/collection" active={pathname === "/collection"}>التشكيلة</NavLink>
                 <NavLink href="/about" active={pathname === "/about"}>من نحن</NavLink>
                 <NavLink href="/blog" active={pathname.startsWith("/blog")}>المدونة</NavLink>
@@ -68,6 +69,7 @@ export function Navbar() {
                         className="absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 flex flex-col items-center gap-6 py-8 md:hidden overflow-hidden"
                     >
                         <MobileNavLink href="/" onClick={() => setIsMobileMenuOpen(false)}>الرئيسية</MobileNavLink>
+                        <MobileNavLink href="/services" onClick={() => setIsMobileMenuOpen(false)}>خدماتنا</MobileNavLink>
                         <MobileNavLink href="/collection" onClick={() => setIsMobileMenuOpen(false)}>التشكيلة</MobileNavLink>
                         <MobileNavLink href="/about" onClick={() => setIsMobileMenuOpen(false)}>من نحن</MobileNavLink>
                         <MobileNavLink href="/blog" onClick={() => setIsMobileMenuOpen(false)}>المدونة</MobileNavLink>

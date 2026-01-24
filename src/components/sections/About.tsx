@@ -118,7 +118,7 @@ export function About() {
                             لدينا شهادة معتمدة وخبرة عميقة تمتد لقرابة 10 سنوات في فن الخياطة النسائية، صقلتها سنوات من العمل في كبرى مصانع الخياطة. نحن لا نقدم مجرد ملابس، بل نقدم تجربة فريدة تجمع بين الحرفة التقليدية واللمسات العصرية.
                         </p>
                         <p>
-                            سواء كنتِ تبحثين عن إحرامات مريحة لرحلة العمر، أو جلابية تعكس هويتك، أو تعديل دقيق لملابسك المفضلة، نحن هنا لنحقق لكِ ما تتمنين بأعلى معايير الجودة.
+                            سواء كنتِ تبحثين عن إحرامات مريحة لرحلة العمرة، أو جلابية تعكس هويتك، أو تعديل دقيق لملابسك المفضلة، نحن هنا لنحقق لكِ ما تتمنين بأعلى معايير الجودة.
                         </p>
                     </motion.div>
 
@@ -171,7 +171,7 @@ export function About() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <ServiceCard
                         icon={<Shirt />}
-                        title="أحرامات حج وعمرة"
+                        title="إحرامات حج وعمرة"
                         desc="خياطة ملابس إحرام مريحة وعملية بأقمشة قطنية فاخرة تناسب الأجواء الروحانية."
                         delay={0.1}
                     />
@@ -218,7 +218,7 @@ export function About() {
                 <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#C5A038_1px,transparent_1px)] [background-size:20px_20px]" />
 
                 <h3 className="text-3xl md:text-4xl font-bold text-[#5A4A42] mb-4 relative z-10">لماذا تختارين رواء؟</h3>
-                <p className="text-sm text-[#8B7355] mb-12 relative z-10">نخيط لكي قطعة لتعيش معكي سنوات طويلة</p>
+                <p className="text-sm text-[#8B7355] mb-12 relative z-10">نخيط لكِ قطعة لتعيش معكِ سنوات طويلة</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
                     <Feature
                         title="خبرة مصانع"

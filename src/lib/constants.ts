@@ -31,13 +31,14 @@ export function getWhatsAppUrl(message: string = ""): string {
  * Generate order message for a specific item
  * @param itemTitle - The title of the item being ordered
  * @param category - Optional category of the item
+ * @param imageUrl - Optional image URL of the item
  */
-export function getOrderWhatsAppUrl(itemTitle: string, category?: string): string {
+export function getOrderWhatsAppUrl(itemTitle: string, category?: string, imageUrl?: string): string {
     const message = `السلام عليكم 👋
 
 أرغب في طلب التصميم التالي:
 
-📌 *${itemTitle}*${category ? `\n📂 التصنيف: ${category}` : ""}
+📌 *${itemTitle}*${category ? `\n📂 التصنيف: ${category}` : ""}${imageUrl ? `\n🖼️ صورة التصميم: ${imageUrl}` : ""}
 
 أرجو التواصل معي لمزيد من التفاصيل.
 شكراً لكم 🙏`;
