@@ -34,14 +34,17 @@ export function getWhatsAppUrl(message: string = ""): string {
  * @param imageUrl - Optional image URL of the item
  */
 export function getOrderWhatsAppUrl(itemTitle: string, category?: string, imageUrl?: string): string {
-    const message = `السلام عليكم 👋
+    let message = `السلام عليكم 👋\n\nأرغب في طلب التصميم التالي:\n\n📌 *${itemTitle}*`;
 
-أرغب في طلب التصميم التالي:
+    if (category) {
+        message += `\n📂 التصنيف: ${category}`;
+    }
 
-📌 *${itemTitle}*${category ? `\n📂 التصنيف: ${category}` : ""}${imageUrl ? `\n🖼️ صورة التصميم: ${imageUrl}` : ""}
+    if (imageUrl) {
+        message += `\n🖼️ صورة التصميم: ${imageUrl}`;
+    }
 
-أرجو التواصل معي لمزيد من التفاصيل.
-شكراً لكم 🙏`;
+    message += `\n\nأرجو التواصل معي لمزيد من التفاصيل.\nشكراً لكم 🙏`;
 
     return getWhatsAppUrl(message);
 }

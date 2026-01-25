@@ -27,7 +27,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
     useEffect(() => {
         const fetchService = async () => {
             try {
-                const res = await fetch(`/api/services/slug/${slug}`);
+                const res = await fetch(`/api/services/slug/${encodeURIComponent(slug)}`);
                 if (res.ok) {
                     const data = await res.json();
                     setService(data);

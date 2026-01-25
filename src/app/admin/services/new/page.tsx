@@ -6,7 +6,7 @@ import { Upload, Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
-import slugify from "slugify";
+
 
 // Available Lucide Icons to choose from
 const ICON_OPTIONS = [
@@ -57,12 +57,13 @@ export default function NewServicePage() {
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const title = e.target.value;
-        // Auto-generate slug from title if slug is empty or matches previous slugified title
-        const slug = slugify(title, { lower: true, strict: true });
+        // Auto-generate slug from title
+        // We use a simple replacement for Arabic support since slugify strict mode removes Arabic
+        const slug = title.trim().toLowerCase().replace(/\s+/g, '-');
         setFormData(prev => ({
             ...prev,
             title,
-            slug: prev.slug === "" || prev.slug === slugify(prev.title, { lower: true, strict: true }) ? slug : prev.slug
+            slug: prev.slug === "" || prev.slug === prev.title.trim().toLowerCase().replace(/\s+/g, '-') ? slug : prev.slug
         }));
     };
 

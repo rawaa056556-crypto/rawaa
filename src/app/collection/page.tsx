@@ -100,7 +100,7 @@ export default function CollectionPage() {
             </section>
 
             {/* Filter Tabs */}
-            <section className="px-4 md:px-8 mb-16 sticky top-24 z-30">
+            <section className="px-4 md:px-8 mb-16 sticky top-24 md:top-32 z-40">
                 <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-4xl mx-auto bg-white/60 backdrop-blur-xl p-3 rounded-full shadow-sm border border-white/50">
                     {categories.map((cat) => (
                         <button
