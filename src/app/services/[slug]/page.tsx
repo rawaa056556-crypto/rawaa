@@ -1,25 +1,70 @@
-
 "use client";
 
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { servicesData } from "@/data/services";
 import * as LucideIcons from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { getInquiryWhatsAppUrl } from "@/lib/constants";
+import { Skeleton } from "@/components/ui/skeleton";
+
+interface Service {
+    _id: string;
+    slug: string;
+    title: string;
+    fullDescription: string;
+    iconName: string;
+    features: string[];
+    image: string;
+}
 
 export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
-    const service = servicesData.find((s) => s.slug === params.slug);
+    const [service, setService] = useState<Service | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchService = async () => {
+            try {
+                const res = await fetch(`/api/services/slug/${params.slug}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setService(data);
+                }
+            } catch (error) {
+                console.error("Failed to fetch service");
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchService();
+    }, [params.slug]);
+
+    if (loading) {
+        return (
+            <main className="min-h-screen bg-[#FFFBF2] pt-28 pb-20" dir="rtl">
+                <div className="max-w-7xl mx-auto px-4 md:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+                        <div className="space-y-6">
+                            <Skeleton className="w-20 h-20 rounded-2xl" />
+                            <Skeleton className="h-16 w-3/4" />
+                            <Skeleton className="h-40 w-full" />
+                            <Skeleton className="h-64 w-full rounded-3xl" />
+                        </div>
+                        <Skeleton className="h-[600px] w-full rounded-[3rem]" />
+                    </div>
+                </div>
+            </main>
+        )
+    }
 
     if (!service) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-[#FFFBF2]">
                 <div className="text-center">
                     <h1 className="text-4xl font-bold text-[#5A4A42] mb-4">الخدمة غير موجودة</h1>
-                    <Link href="/" className="text-[#C5A038] hover:underline">
-                        العودة للرئيسية
+                    <Link href="/services" className="text-[#C5A038] hover:underline">
+                        العودة للخدمات
                     </Link>
                 </div>
             </div>
@@ -107,7 +152,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         <div className="absolute top-1/2 left-1/2 w-full h-full bg-[#C5A038]/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 -z-10" />
 
                         <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden bg-gray-100">
-                            {/* Since real images might not exist, we use a placeholder or the service image if valid */}
                             <Image
                                 src={service.image}
                                 alt={service.title}

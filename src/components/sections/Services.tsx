@@ -1,15 +1,43 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, Shirt, Ruler, Scissors, ArrowRight, CheckCircle2, Clock, ThumbsUp, MessageCircle, Users, Star } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock, ThumbsUp, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { getInquiryWhatsAppUrl } from "@/lib/constants";
-import { servicesData } from "@/data/services";
 import * as LucideIcons from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+
+interface Service {
+    _id: string;
+    slug: string;
+    title: string;
+    shortDescription: string;
+    iconName: string;
+}
 
 export function Services() {
+    const [servicesData, setServicesData] = useState<Service[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const res = await fetch('/api/services');
+                if (res.ok) {
+                    const data = await res.json();
+                    setServicesData(data.slice(0, 4)); // Get first 4
+                }
+            } catch (error) {
+                console.error("Failed to fetch services");
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchServices();
+    }, []);
+
     return (
         <section className="py-24 bg-[#FFFBF2] relative overflow-hidden" dir="rtl" id="services">
             {/* Background Elements */}
@@ -47,18 +75,28 @@ export function Services() {
                 }}
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24 relative z-10"
             >
-                {servicesData.slice(0, 4).map((service) => {
-                    const IconComponent = (LucideIcons as any)[service.iconName] || LucideIcons.Sparkles;
-                    return (
-                        <ServiceCard
-                            key={service.id}
-                            title={service.title}
-                            description={service.shortDescription}
-                            icon={<IconComponent className="w-8 h-8" />}
-                            slug={service.slug}
-                        />
-                    );
-                })}
+                {loading ? (
+                    Array(4).fill(0).map((_, i) => (
+                        <div key={i} className="bg-white rounded-3xl p-8 h-80">
+                            <Skeleton className="w-16 h-16 rounded-2xl mb-6" />
+                            <Skeleton className="h-6 w-3/4 mb-4" />
+                            <Skeleton className="h-20 w-full mb-6" />
+                        </div>
+                    ))
+                ) : (
+                    servicesData.map((service) => {
+                        const IconComponent = (LucideIcons as any)[service.iconName] || LucideIcons.Sparkles;
+                        return (
+                            <ServiceCard
+                                key={service._id}
+                                title={service.title}
+                                description={service.shortDescription}
+                                icon={<IconComponent className="w-8 h-8" />}
+                                slug={service.slug}
+                            />
+                        );
+                    })
+                )}
 
             </motion.div>
 
@@ -170,4 +208,3 @@ function StatsCard({ number, label, icon, delay }: { number: string, label: stri
         </motion.div>
     )
 }
-
