@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import * as LucideIcons from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import Image from "next/image";
 import { getInquiryWhatsAppUrl } from "@/lib/constants";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -19,14 +19,15 @@ interface Service {
     image: string;
 }
 
-export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
+export default function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = use(params);
     const [service, setService] = useState<Service | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchService = async () => {
             try {
-                const res = await fetch(`/api/services/slug/${params.slug}`);
+                const res = await fetch(`/api/services/slug/${slug}`);
                 if (res.ok) {
                     const data = await res.json();
                     setService(data);
@@ -38,7 +39,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             }
         };
         fetchService();
-    }, [params.slug]);
+    }, [slug]);
 
     if (loading) {
         return (

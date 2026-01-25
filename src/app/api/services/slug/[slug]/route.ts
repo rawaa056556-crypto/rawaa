@@ -2,10 +2,11 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import { Service } from '@/models/Service';
 
-export async function GET(req: Request, { params }: { params: { slug: string } }) {
+export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
     await dbConnect();
+    const { slug } = await params;
     try {
-        const service = await Service.findOne({ slug: params.slug });
+        const service = await Service.findOne({ slug: slug });
         if (!service) {
             return NextResponse.json({ error: 'Service not found' }, { status: 404 });
         }

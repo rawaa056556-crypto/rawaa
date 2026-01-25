@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { Upload, Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -13,7 +13,8 @@ const ICON_OPTIONS = [
     "CheckCircle2", "Clock", "ThumbsUp", "MessageCircle", "Heart", "Gem"
 ];
 
-export default function EditServicePage({ params }: { params: { id: string } }) {
+export default function EditServicePage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -33,7 +34,7 @@ export default function EditServicePage({ params }: { params: { id: string } }) 
     useEffect(() => {
         const fetchService = async () => {
             try {
-                const res = await fetch(`/api/services/${params.id}`);
+                const res = await fetch(`/api/services/${id}`);
                 if (res.ok) {
                     const data = await res.json();
                     setFormData({
@@ -51,7 +52,7 @@ export default function EditServicePage({ params }: { params: { id: string } }) 
             }
         };
         fetchService();
-    }, [params.id, router]);
+    }, [id, router]);
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files?.[0]) return;
@@ -90,7 +91,7 @@ export default function EditServicePage({ params }: { params: { id: string } }) 
         };
 
         try {
-            const res = await fetch(`/api/services/${params.id}`, {
+            const res = await fetch(`/api/services/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(submitData),
