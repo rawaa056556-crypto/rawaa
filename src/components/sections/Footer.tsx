@@ -36,7 +36,7 @@ export function Footer() {
                         <a href={getInquiryWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="bg-[#25D366] hover:bg-[#1da851] text-white text-lg md:text-xl font-bold py-3 px-12 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 block text-center border-2 border-[#C5A038]">
                             تواصل عبر واتساب
                         </a>
-                        <p className="text-[#8B7355] font-bold">الموقع: السعودية فقط</p>
+
                     </div>
 
                     {/* Map Section Removed as per request */}
@@ -52,7 +52,7 @@ export function Footer() {
                         <Link href="#" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
                             الشروط والأحكام
                         </Link>
-                        <Link href="#" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
+                        <Link href="/refund-policy" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
                             سياسة الاستبدال والاسترجاع
                         </Link>
                     </div>

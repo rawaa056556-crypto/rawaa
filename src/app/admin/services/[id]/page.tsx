@@ -28,7 +28,10 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
         iconName: "Sparkles",
         features: "",
         image: "",
-        order: 0
+        order: 0,
+        duration: "",
+        pricing: "",
+        showPricing: false
     });
 
     useEffect(() => {
@@ -239,6 +242,46 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
                             className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#C5A038] outline-none resize-none"
                             placeholder="- دقة عالية&#10;- تسليم سريع&#10;- أسعار منافسة"
                         />
+                    </div>
+
+                    <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <h3 className="font-bold text-[#5A4A42] mb-4 text-lg">تفاصيل إضافية</h3>
+
+                        <div className="flex items-center gap-3 mb-6">
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={formData.showPricing}
+                                    onChange={e => setFormData({ ...formData, showPricing: e.target.checked })}
+                                    className="sr-only peer"
+                                />
+                                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#C5A038]/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#C5A038]"></div>
+                            </label>
+                            <span className="text-gray-700 font-medium">عرض تفاصيل السعر والمدة للعملاء</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block font-bold text-gray-700 mb-2">المدة المقدرة</label>
+                                <input
+                                    type="text"
+                                    value={formData.duration || ""}
+                                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#C5A038] outline-none"
+                                    placeholder="مثال: 3-5 أيام"
+                                />
+                            </div>
+                            <div>
+                                <label className="block font-bold text-gray-700 mb-2">السعر (نصي)</label>
+                                <input
+                                    type="text"
+                                    value={formData.pricing || ""}
+                                    onChange={(e) => setFormData({ ...formData, pricing: e.target.value })}
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#C5A038] outline-none"
+                                    placeholder="مثال: يبدأ من 150 ريال"
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="pt-4">

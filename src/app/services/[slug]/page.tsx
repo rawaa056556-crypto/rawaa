@@ -20,6 +20,7 @@ interface Service {
     gallery?: string[];
     duration?: string;
     pricing?: string;
+    showPricing?: boolean;
 }
 
 export default function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -111,7 +112,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
                         </h1>
 
                         {/* Quick Info */}
-                        {(service.duration || service.pricing) && (
+                        {(service.duration || (service.pricing && service.showPricing)) && (
                             <div className="flex flex-wrap gap-4">
                                 {service.duration && (
                                     <div className="flex items-center gap-2 bg-[#FFF8E7] px-4 py-2 rounded-xl text-[#8B6F21] border border-[#C5A038]/20">
@@ -119,7 +120,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
                                         <span className="font-medium text-sm">المدة: {service.duration}</span>
                                     </div>
                                 )}
-                                {service.pricing && (
+                                {service.pricing && service.showPricing && (
                                     <div className="flex items-center gap-2 bg-[#FFF8E7] px-4 py-2 rounded-xl text-[#8B6F21] border border-[#C5A038]/20">
                                         <BadgeDollarSign size={18} />
                                         <span className="font-medium text-sm">السعر: {service.pricing}</span>
