@@ -68,52 +68,43 @@ export function Testimonials() {
             </div>
 
             {/* Infinite Scrolling Slider */}
-            <div className="relative w-full overflow-hidden py-10">
+            <div className="relative w-full overflow-hidden py-10 select-none">
                 {/* Gradient Masks for fading effect at edges */}
                 <div className="absolute top-0 left-0 h-full w-24 md:w-48 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
                 <div className="absolute top-0 right-0 h-full w-24 md:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-                {reviews.length > 0 && (
-                    <div className="flex w-max hover:pause-animation">
-                        {/* CSS Animation Container */}
-                        <div className="flex gap-8 animate-scroll-rtl">
-                            {duplicatedReviews.map((review, index) => (
+                {reviews.length > 0 ? (
+                    <div className="flex">
+                        <motion.div
+                            className="flex gap-8"
+                            initial={{ x: 0 }}
+                            animate={{ x: "-25%" }}
+                            transition={{
+                                duration: 25,
+                                ease: "linear",
+                                repeat: Infinity,
+                            }}
+                            whileHover={{ scale: 0.98, opacity: 0.8 }}
+                        >
+                            {[...reviews, ...reviews, ...reviews, ...reviews].map((review, index) => (
                                 <TestimonialCard key={`${review._id}-${index}`} testimonial={review} />
                             ))}
-                        </div>
+                        </motion.div>
                     </div>
+                ) : (
+                    !loading && reviews.length === 0 && (
+                        <div className="flex justify-center text-gray-400">
+                            <p>لا توجد تقييمات بعد، كوني أول من يقيمنا!</p>
+                        </div>
+                    )
                 )}
 
-                {reviews.length === 0 && (
+                {loading && (
                     <div className="flex justify-center">
                         <Loader2 className="animate-spin text-[#C5A038]" size={32} />
                     </div>
                 )}
             </div>
-
-            {/* CSS for infinite scroll */}
-            <style jsx global>{`
-                @keyframes scroll-ltr {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(calc(-100% / 3)); }
-                }
-                .animate-scroll-rtl {
-                    display: flex;
-                    gap: 2rem;
-                    /* Move left to right (or right to left depending on visual). 
-                       Standard: content slides LEFT. transform: translateX(-50%).
-                       Since we have 3 copies, and want to slide continuously, we move by 1/3.
-                       Wait, duplicatedReviews = [...reviews, ...reviews, ...reviews]. Total 3 sets.
-                       To loop perfectly, we move exactly the width of ONE set (1/3 of total width).
-                       Target: translateX(-33.333%).
-                    */
-                    animation: scroll-ltr 40s linear infinite;
-                }
-                /* Pause on hover */
-                .hover\\:pause-animation:hover .animate-scroll-rtl {
-                    animation-play-state: paused;
-                }
-            `}</style>
 
             {/* Review Form Modal */}
             <AnimatePresence>

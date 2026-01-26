@@ -8,6 +8,9 @@ const ServiceSchema = new Schema({
     iconName: { type: String, required: true, default: 'Sparkles' },
     features: { type: [String], default: [] },
     image: { type: String, required: true },
+    gallery: { type: [String], default: [] }, // Additional images
+    duration: { type: String, required: false }, // e.g., "3-5 أيام"
+    pricing: { type: String, required: false }, // e.g., "يبدأ من 200 ريال"
     order: { type: Number, default: 0 },
 }, { timestamps: true });
 
