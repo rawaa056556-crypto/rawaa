@@ -68,42 +68,71 @@ export function Testimonials() {
             </div>
 
             {/* Infinite Scrolling Slider */}
-            <div className="relative w-full overflow-hidden py-10 select-none">
-                {/* Gradient Masks for fading effect at edges */}
-                <div className="absolute top-0 left-0 h-full w-24 md:w-48 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 right-0 h-full w-24 md:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            <div className="relative w-full overflow-hidden py-10 select-none" dir="ltr">
+                {/* Gradient Masks */}
+                <div className="absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+                <div className="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
 
                 {reviews.length > 0 ? (
-                    <div className="flex">
-                        <motion.div
-                            className="flex gap-8"
-                            initial={{ x: 0 }}
-                            animate={{ x: "-25%" }}
-                            transition={{
-                                duration: 25,
-                                ease: "linear",
-                                repeat: Infinity,
-                            }}
-                            whileHover={{ scale: 0.98, opacity: 0.8 }}
-                        >
-                            {[...reviews, ...reviews, ...reviews, ...reviews].map((review, index) => (
-                                <TestimonialCard key={`${review._id}-${index}`} testimonial={review} />
+                    <div
+                        className="flex w-max items-center gap-8 hover:pause"
+                        style={{
+                            animation: "marquee 40s linear infinite",
+                        }}
+                        onMouseEnter={(e) => {
+                            const target = e.currentTarget;
+                            target.style.animationPlayState = "paused";
+                        }}
+                        onMouseLeave={(e) => {
+                            const target = e.currentTarget;
+                            target.style.animationPlayState = "running";
+                        }}
+                    >
+                        {/* First Copy */}
+                        <div className="flex gap-8 shrink-0">
+                            {reviews.map((review, index) => (
+                                <TestimonialCard key={`a-${review._id}-${index}`} testimonial={review} />
                             ))}
-                        </motion.div>
+                        </div>
+                        {/* Second Copy (for seamless loop) */}
+                        <div className="flex gap-8 shrink-0">
+                            {reviews.map((review, index) => (
+                                <TestimonialCard key={`b-${review._id}-${index}`} testimonial={review} />
+                            ))}
+                        </div>
+                        {/* Third Copy (extra safety for wide screens) */}
+                        <div className="flex gap-8 shrink-0">
+                            {reviews.map((review, index) => (
+                                <TestimonialCard key={`c-${review._id}-${index}`} testimonial={review} />
+                            ))}
+                        </div>
+                        {/* Fourth Copy (extra safety) */}
+                        <div className="flex gap-8 shrink-0">
+                            {reviews.map((review, index) => (
+                                <TestimonialCard key={`d-${review._id}-${index}`} testimonial={review} />
+                            ))}
+                        </div>
                     </div>
                 ) : (
-                    !loading && reviews.length === 0 && (
-                        <div className="flex justify-center text-gray-400">
+                    !loading && (
+                        <div className="flex justify-center text-gray-400 py-10 relative z-10" dir="rtl">
                             <p>لا توجد تقييمات بعد، كوني أول من يقيمنا!</p>
                         </div>
                     )
                 )}
 
                 {loading && (
-                    <div className="flex justify-center">
+                    <div className="flex justify-center py-10 relative z-10">
                         <Loader2 className="animate-spin text-[#C5A038]" size={32} />
                     </div>
                 )}
+
+                <style jsx>{`
+                    @keyframes marquee {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-25%); } /* Based on 4 copies, move 1 full set (1/4 = 25%) */
+                    }
+                `}</style>
             </div>
 
             {/* Review Form Modal */}
