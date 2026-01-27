@@ -39,7 +39,7 @@ export function Contact() {
             icon: Phone,
             title: "اتصلي بنا",
             value: DISPLAY_PHONE,
-            link: `tel:${DISPLAY_PHONE}`,
+            link: `tel:${DISPLAY_PHONE.replace(/\s/g, '')}`,
             delay: 0.1
         },
         {
