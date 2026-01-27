@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import * as LucideIcons from "lucide-react";
 import React, { useEffect, useState, use } from "react";
 import Image from "next/image";
-import { getInquiryWhatsAppUrl } from "@/lib/constants";
+import { getInquiryWhatsAppUrl, getServiceInquiryWhatsAppUrl, SITE_URL } from "@/lib/constants";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface Service {
@@ -152,7 +152,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-6">
                             <a
-                                href={getInquiryWhatsAppUrl()}
+                                href={getServiceInquiryWhatsAppUrl(service.title, `${SITE_URL}/services/${service.slug}`)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex-1 bg-[#25D366] hover:bg-[#1da851] text-white py-4 px-8 rounded-xl font-bold text-center transition-all shadow-lg hover:shadow-[#25D366]/30 hover:-translate-y-1"

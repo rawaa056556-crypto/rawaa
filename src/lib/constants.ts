@@ -61,3 +61,20 @@ export function getInquiryWhatsAppUrl(): string {
 
     return getWhatsAppUrl(message);
 }
+/**
+ * Generate inquiry message for a specific service
+ * @param serviceName - The name of the service
+ * @param pageUrl - The URL of the service page
+ */
+export function getServiceInquiryWhatsAppUrl(serviceName: string, pageUrl: string): string {
+    const message = `السلام عليكم 👋
+
+أود الاستفسار عن خدمة: *${serviceName}*
+
+رابط الخدمة:
+${pageUrl}
+
+شكراً لكم 🙏`;
+
+    return getWhatsAppUrl(message);
+}
