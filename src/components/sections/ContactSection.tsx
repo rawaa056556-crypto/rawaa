@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Loader2, MapPin, Clock } from "lucide-react";
+import { Loader2, MapPin, Clock, Instagram, Phone, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { WHATSAPP_NUMBER } from "@/lib/constants";
 
 export function ContactSection() {
     const [formState, setFormState] = useState({
@@ -65,11 +66,23 @@ export function ContactSection() {
                 <div className="flex flex-col gap-4 mb-8 text-center" dir="rtl">
                     <div className="flex items-center justify-center gap-2 text-[#8B7355]">
                         <MapPin size={20} className="text-[#C5A038]" />
-                        <span className="font-arabic text-lg">سيهات الدمام</span>
+                        <span className="font-arabic text-lg">المملكة العربية السعودية</span>
                     </div>
                     <div className="flex items-center justify-center gap-2 text-[#8B7355]">
                         <Clock size={20} className="text-[#C5A038]" />
                         <span className="font-arabic text-lg">ساعات العمل يوميا</span>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-4 mt-2">
+                        <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" className="p-3 bg-white rounded-full text-[#25D366] shadow-md hover:scale-110 transition-transform">
+                            <MessageCircle size={24} />
+                        </a>
+                        <a href="https://www.instagram.com/rawaa_boutique1?utm_source=qr&igsh=dXI3cjB0MHlsNnY2" target="_blank" rel="noopener noreferrer" className="p-3 bg-white rounded-full text-[#E4405F] shadow-md hover:scale-110 transition-transform">
+                            <Instagram size={24} />
+                        </a>
+                        <a href={`tel:${WHATSAPP_NUMBER}`} className="p-3 bg-white rounded-full text-[#5A4A42] shadow-md hover:scale-110 transition-transform">
+                            <Phone size={24} />
+                        </a>
                     </div>
                 </div>
 

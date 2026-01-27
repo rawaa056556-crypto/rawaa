@@ -39,7 +39,7 @@ export function Contact() {
             icon: Phone,
             title: "اتصلي بنا",
             value: DISPLAY_PHONE,
-            link: `https://wa.me/${WHATSAPP_NUMBER}`,
+            link: `tel:${DISPLAY_PHONE}`,
             delay: 0.1
         },
         {
