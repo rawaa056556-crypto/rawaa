@@ -25,6 +25,7 @@ export function Hero() {
                         fill
                         className="object-cover"
                         priority
+                        sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px]"></div>
                 </motion.div>
@@ -141,6 +142,7 @@ export function Hero() {
                             fill
                             className="object-cover object-top"
                             priority
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                     </div>
                 </motion.div>

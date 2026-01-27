@@ -50,6 +50,7 @@ export function Gallery() {
                     fill
                     className="object-cover opacity-60"
                     priority
+                    sizes="100vw"
                 />
             </div>
 
@@ -125,7 +126,7 @@ export function Gallery() {
                                     transition={{ delay: i * 0.1 }}
                                     className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg border-2 border-white"
                                 >
-                                    <Image src={item.image} alt={item.title || "Gallery"} fill className="object-cover" />
+                                    <Image src={item.image} alt={item.title || "Gallery"} fill className="object-cover" sizes="(max-width: 1024px) 50vw, 33vw" />
                                 </motion.div>
                             ))}
                         </div>
@@ -140,7 +141,7 @@ export function Gallery() {
                                 transition={{ duration: 0.8 }}
                                 className="absolute left-1/2 -translate-x-1/2 top-0 w-64 h-80 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white z-20 hover:scale-105 transition-transform duration-500"
                             >
-                                <Image src={getImage(0)} alt="Gallery 1" fill className="object-cover" />
+                                <Image src={getImage(0)} alt="Gallery 1" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* 2. Top Left - Sewing Machine */}
@@ -152,7 +153,7 @@ export function Gallery() {
                                 className="absolute left-[25%] top-[10%] w-60 h-60 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white z-10 hover:z-30 hover:rotate-2 transition-transform duration-500"
                                 style={{ transition: "transform 0.5s, z-index 0s" }}
                             >
-                                <Image src={getImage(1)} alt="Gallery 2" fill className="object-cover" />
+                                <Image src={getImage(1)} alt="Gallery 2" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* 3. Top Right - Two Women */}
@@ -163,7 +164,7 @@ export function Gallery() {
                                 animate={{ y: [0, -12, 0] }}
                                 className="absolute right-[25%] top-[10%] w-60 h-80 rounded-[2rem] overflow-hidden shadow-lg border-4 border-white z-10 hover:z-30 hover:-rotate-2 transition-transform duration-500"
                             >
-                                <Image src={getImage(2)} alt="Gallery 3" fill className="object-cover" />
+                                <Image src={getImage(2)} alt="Gallery 3" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* 4. Left Middle - White Rack */}
@@ -173,7 +174,7 @@ export function Gallery() {
                                 transition={{ duration: 0.8, delay: 0.4 }}
                                 className="absolute left-[15%] top-[35%] w-64 h-96 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white z-20 hover:scale-105 transition-transform duration-500"
                             >
-                                <Image src={getImage(3)} alt="Gallery 4" fill className="object-cover" />
+                                <Image src={getImage(3)} alt="Gallery 4" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* 5. Right Middle - Haram Scene */}
@@ -183,7 +184,7 @@ export function Gallery() {
                                 transition={{ duration: 0.8, delay: 0.4 }}
                                 className="absolute right-[15%] top-[35%] w-64 h-80 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white z-20 hover:scale-105 transition-transform duration-500"
                             >
-                                <Image src={getImage(4)} alt="Gallery 5" fill className="object-cover" />
+                                <Image src={getImage(4)} alt="Gallery 5" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* 6. Bottom Left - Hands Cutting */}
@@ -194,7 +195,7 @@ export function Gallery() {
                                 animate={{ y: [0, -8, 0] }}
                                 className="absolute left-[28%] bottom-[15%] w-60 h-60 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white z-30 hover:rotate-2 transition-transform duration-500"
                             >
-                                <Image src={getImage(5)} alt="Gallery 6" fill className="object-cover" />
+                                <Image src={getImage(5)} alt="Gallery 6" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* 7. Bottom Center - Three Girls */}
@@ -204,7 +205,7 @@ export function Gallery() {
                                 transition={{ duration: 0.8, delay: 0.6 }}
                                 className="absolute left-1/2 -translate-x-1/2 bottom-0 w-64 h-96 rounded-[2rem] overflow-hidden shadow-lg border-4 border-white z-40 hover:scale-105 transition-transform duration-500"
                             >
-                                <Image src={getImage(6)} alt="Gallery 7" fill className="object-cover" />
+                                <Image src={getImage(6)} alt="Gallery 7" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* 8. Bottom Right - Clothes Rack */}
@@ -215,7 +216,7 @@ export function Gallery() {
                                 animate={{ y: [0, -10, 0] }}
                                 className="absolute right-[28%] bottom-[15%] w-60 h-80 rounded-[2rem] overflow-hidden shadow-xl border-4 border-white z-20 hover:-rotate-2 transition-transform duration-500"
                             >
-                                <Image src={getImage(7)} alt="Gallery 8" fill className="object-cover" />
+                                <Image src={getImage(7)} alt="Gallery 8" fill className="object-cover" sizes="300px" />
                             </motion.div>
 
                             {/* Decorative Stars */}
