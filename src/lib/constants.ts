@@ -67,11 +67,7 @@ export function getInquiryWhatsAppUrl(): string {
  * @param pageUrl - The URL of the service page
  */
 export function getServiceInquiryWhatsAppUrl(serviceName: string, pageUrl: string): string {
-    let intro = "السلام عليكم 👋";
-
-    // Custom welcome message for "تعديل ملابس"
-    if (serviceName.includes("تعديل ملابس")) {
-        intro = `مرحباً بكِ في متجر رواء
+    const intro = `مرحباً بكِ في متجر رواء
 
 نسعد بخدمتكِ دائماً
 نوفر خدمة التوصيل لباب البيت 🚚
@@ -83,7 +79,6 @@ export function getServiceInquiryWhatsAppUrl(serviceName: string, pageUrl: strin
 الإسم + المنطقة + رقم الجوال
 - ولتحديد المقاس المناسب :
 ارسلي مقاسك لتحديد المقاس المناسب بكل دقة .`;
-    }
 
     const message = `${intro}
 
