@@ -49,6 +49,9 @@ export function Footer() {
                 {/* Copyright Section */}
                 <div className="text-center space-y-2">
                     <div className="flex justify-center gap-4">
+                        <Link href="/faq" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
+                            الأسئلة الشائعة
+                        </Link>
                         <Link href="#" className="block text-[#8B7355] hover:text-[#D4AF37] hover:underline font-medium text-sm">
                             الشروط والأحكام
                         </Link>
