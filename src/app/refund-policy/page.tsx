@@ -58,8 +58,8 @@ export default function RefundPolicyPage() {
                         delay={0.4}
                     >
                         <ul className="space-y-4 text-gray-600 leading-relaxed list-disc list-inside marker:text-[#C5A038]">
-                            <li>يمكن طلب <strong>الاسترجاع</strong> خلال 3 أيام من تاريخ استلام الطلب.</li>
-                            <li>يمكن طلب <strong>الاستبدال</strong> خلال 7 أيام من تاريخ استلام الطلب.</li>
+                            <li>يمكن طلب <strong>الاسترجاع</strong> خلال يوم  من تاريخ استلام الطلب.</li>
+                            <li>يمكن طلب <strong>الاستبدال</strong> خلال 3 أيام من تاريخ استلام الطلب.</li>
                             <li>في حال التفصيل الخاص (تصميم حسب الطلب)، لا يمكن استرجاع المبلغ إلا في حال وجود عيب مصنعي أو مخالفة واضحة للمواصفات المتفق عليها.</li>
                         </ul>
                     </PolicySection>
