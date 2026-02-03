@@ -24,7 +24,7 @@ export default function RefundPolicyPage() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-3xl md:text-5xl font-arabic font-bold text-[#5A4A42] mb-6"
                     >
-                        سياسة الاستبدال والاسترجاع
+                        سياسة الإستبدال والإسترجاع
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export default function RefundPolicyPage() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto"
                     >
-                        نحن في رواء نحرص على رضاكم التام عن خدماتنا ومنتجاتنا. نوضح لكم أدناه الشروط والأحكام المتعلقة بعملية الاستبدال والاسترجاع لضمان حقوقكم.
+                        نحن في رواء نحرص على رضاكم التام عن خدماتنا ومنتجاتنا. نوضح لكم أدناه الشروط والأحكام المتعلقة بعملية الإستبدال والإسترجاع لضمان حقوقكم.
                     </motion.p>
                 </div>
 
@@ -66,7 +66,7 @@ export default function RefundPolicyPage() {
 
                     {/* Non-returnable Items */}
                     <PolicySection
-                        title="حالات لا تشمل الاستبدال أو الاسترجاع"
+                        title="حالات لا تشمل الإستبدال أو الإسترجاع"
                         icon={AlertCircle}
                         delay={0.5}
                     >
