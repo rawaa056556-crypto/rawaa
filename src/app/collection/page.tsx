@@ -15,7 +15,7 @@ const categories = [
     { id: "ihram", label: "إحرامات عمرة وحج" },
     { id: "prayer_ihram", label: "إحرامات صلاة" },
     { id: "jalabiya", label: "خياطة جلابيات" },
-    { id: "uniform", label: "زي موحد(مرايل)" },
+    { id: "uniform", label: "زي موحد(مراييل)" },
     { id: "alteration", label: "تعديلات" },
     { id: "women", label: "خياطة نسائية شاملة" },
 ];
