@@ -7,15 +7,14 @@
 // Phone Numbers
 // ============================
 
-// International phone number (for calling)
+// رقم الاتصال الدولي (مهم للـ tel: لكي يرن بدون خطأ)
 export const PHONE_NUMBER = "+966565560831";
 
-// WhatsApp number (without +)
+// WhatsApp number (بدون +)
 export const WHATSAPP_NUMBER = "966565560831";
 
-// Display phone (UI only)
+// رقم العرض فقط للواجهة
 export const DISPLAY_PHONE = "056 556 0831";
-
 
 // ============================
 // Site Info
@@ -25,7 +24,6 @@ export const LOCATION = "المملكة العربية السعودية";
 export const SITE_NAME = "بطلة - أتيلييه ومحل خياطة";
 export const SITE_URL = "https://boteq.com";
 
-
 // ============================
 // Phone Call URL
 // ============================
@@ -33,7 +31,6 @@ export const SITE_URL = "https://boteq.com";
 export function getPhoneCallUrl(): string {
   return `tel:${PHONE_NUMBER}`;
 }
-
 
 // ============================
 // WhatsApp URL
@@ -46,7 +43,6 @@ export function getWhatsAppUrl(message: string = ""): string {
   }`;
 }
 
-
 // ============================
 // Order WhatsApp URL
 // ============================
@@ -56,7 +52,6 @@ export function getOrderWhatsAppUrl(
   category?: string,
   imageUrl?: string
 ): string {
-
   let message = `السلام عليكم 👋\n\nأرغب في طلب التصميم التالي:\n\n📌 *${itemTitle}*`;
 
   if (category) {
@@ -72,13 +67,11 @@ export function getOrderWhatsAppUrl(
   return getWhatsAppUrl(message);
 }
 
-
 // ============================
 // General Inquiry URL
 // ============================
 
 export function getInquiryWhatsAppUrl(): string {
-
   const message = `السلام عليكم 👋
 
 أود الاستفسار عن خدماتكم.
@@ -88,7 +81,6 @@ export function getInquiryWhatsAppUrl(): string {
   return getWhatsAppUrl(message);
 }
 
-
 // ============================
 // Service Inquiry URL
 // ============================
@@ -97,7 +89,6 @@ export function getServiceInquiryWhatsAppUrl(
   serviceName: string,
   pageUrl: string
 ): string {
-
   const intro = `مرحباً بكِ في متجر رواء
 
 نسعد بخدمتكِ دائماً
