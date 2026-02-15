@@ -7,8 +7,8 @@
 // Phone Numbers
 // ============================
 
-// رقم الاتصال الدولي بصيغة URL-safe (%2B بدل +)
-export const PHONE_NUMBER = "%2B966565560831";
+// الرقم الدولي طبيعي مع + (هنخليه URL-safe عند الاستخدام)
+export const PHONE_NUMBER = "+966565560831";
 
 // WhatsApp number (بدون +)
 export const WHATSAPP_NUMBER = "966565560831";
@@ -29,7 +29,8 @@ export const SITE_URL = "https://boteq.com";
 // ============================
 
 export function getPhoneCallUrl(): string {
-  return `tel:${PHONE_NUMBER}`;
+  // encodeURIComponent يحمي الـ + ويخليه يظهر صح
+  return `tel:${encodeURIComponent(PHONE_NUMBER)}`;
 }
 
 // ============================
