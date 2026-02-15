@@ -7,8 +7,8 @@
 // Phone Numbers
 // ============================
 
-// رقم الاتصال الدولي (مهم للـ tel: لكي يرن بدون خطأ)
-export const PHONE_NUMBER = "+966565560831";
+// رقم الاتصال الدولي بصيغة URL-safe (%2B بدل +)
+export const PHONE_NUMBER = "%2B966565560831";
 
 // WhatsApp number (بدون +)
 export const WHATSAPP_NUMBER = "966565560831";
