@@ -7,18 +7,18 @@
 // Phone Numbers
 // ============================
 
+// International phone number (for calling)
+export const PHONE_NUMBER = "+966565560831";
+
 // WhatsApp number (without +)
 export const WHATSAPP_NUMBER = "966565560831";
 
-// International phone number for calling (required for tel:)
-export const PHONE_NUMBER = "+966565560831";
-
-// Display phone number (formatted for UI only)
+// Display phone (UI only)
 export const DISPLAY_PHONE = "056 556 0831";
 
 
 // ============================
-// Location & Site Info
+// Site Info
 // ============================
 
 export const LOCATION = "المملكة العربية السعودية";
@@ -27,7 +27,7 @@ export const SITE_URL = "https://boteq.com";
 
 
 // ============================
-// Generate Phone Call URL
+// Phone Call URL
 // ============================
 
 export function getPhoneCallUrl(): string {
@@ -36,7 +36,7 @@ export function getPhoneCallUrl(): string {
 
 
 // ============================
-// Generate WhatsApp URL
+// WhatsApp URL
 // ============================
 
 export function getWhatsAppUrl(message: string = ""): string {
@@ -48,7 +48,7 @@ export function getWhatsAppUrl(message: string = ""): string {
 
 
 // ============================
-// Generate Order WhatsApp URL
+// Order WhatsApp URL
 // ============================
 
 export function getOrderWhatsAppUrl(
@@ -56,6 +56,7 @@ export function getOrderWhatsAppUrl(
   category?: string,
   imageUrl?: string
 ): string {
+
   let message = `السلام عليكم 👋\n\nأرغب في طلب التصميم التالي:\n\n📌 *${itemTitle}*`;
 
   if (category) {
@@ -73,10 +74,11 @@ export function getOrderWhatsAppUrl(
 
 
 // ============================
-// Generate General Inquiry URL
+// General Inquiry URL
 // ============================
 
 export function getInquiryWhatsAppUrl(): string {
+
   const message = `السلام عليكم 👋
 
 أود الاستفسار عن خدماتكم.
@@ -88,13 +90,14 @@ export function getInquiryWhatsAppUrl(): string {
 
 
 // ============================
-// Generate Service Inquiry URL
+// Service Inquiry URL
 // ============================
 
 export function getServiceInquiryWhatsAppUrl(
   serviceName: string,
   pageUrl: string
 ): string {
+
   const intro = `مرحباً بكِ في متجر رواء
 
 نسعد بخدمتكِ دائماً
