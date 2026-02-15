@@ -7,11 +7,9 @@
 // Phone Numbers
 // ============================
 
-// الرقم الدولي مع + (دلوقتي هيظهر صح على أي جهاز)
+// الرقم الدولي مع + لكل الاستخدامات (tel و WhatsApp)
 export const PHONE_NUMBER = "+966565560831";
-
-// WhatsApp number (بدون +)
-export const WHATSAPP_NUMBER = "966565560831";
+export const WHATSAPP_NUMBER = "+966565560831";
 
 // رقم العرض فقط للواجهة
 export const DISPLAY_PHONE = "056 556 0831";
@@ -29,7 +27,7 @@ export const SITE_URL = "https://boteq.com";
 // ============================
 
 export function getPhoneCallUrl(): string {
-  // encodeURIComponent يحمي الـ + ويخليه يظهر صح
+  // encodeURIComponent يحمي + ويخليه يظهر صح
   return `tel:${encodeURIComponent(PHONE_NUMBER)}`;
 }
 
@@ -39,7 +37,7 @@ export function getPhoneCallUrl(): string {
 
 export function getWhatsAppUrl(message: string = ""): string {
   const encodedMessage = encodeURIComponent(message);
-  return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}${
+  return `https://api.whatsapp.com/send?phone=${encodeURIComponent(WHATSAPP_NUMBER)}${
     message ? `&text=${encodedMessage}` : ""
   }`;
 }
